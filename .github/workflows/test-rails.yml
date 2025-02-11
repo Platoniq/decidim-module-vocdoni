@@ -53,6 +53,9 @@ jobs:
         with:
           chrome-version: 119.0.6045.105
 
+      - name: Install other dependencies
+        run: sudo apt install imagemagick
+
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
