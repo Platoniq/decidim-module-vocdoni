@@ -19,7 +19,7 @@ describe Decidim::Vocdoni::Admin::ElectionsController do
   describe "GET show" do
     let(:info) do
       {
-        clientInfo: {
+        :clientInfo => {
           address: "address",
           nonce: "nonce",
           infoUrl: "infoUrl",
