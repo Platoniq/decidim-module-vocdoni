@@ -50,11 +50,13 @@ module Decidim
       describe "answers" do
         let!(:question2) { create(:vocdoni_question, :complete) }
         let(:query) { "{ answers { id } }" }
+        let(:result) { response["answers"].map { |question| question["id"] } }
+        let(:expected_result) { model.answers.map(&:id).map(&:to_s) }
+        let(:unexpected_results) { [question2.answers.map(&:id).map(&:to_s)] }
 
         it "returns the question answers" do
-          ids = response["answers"].map { |question| question["id"] }
-          expect(ids).to include(*model.answers.map(&:id).map(&:to_s))
-          expect(ids).not_to include(*question2.answers.map(&:id).map(&:to_s))
+          expect(result).to include(*expected_result) unless expected_result.empty?
+          unexpected_results.each { |unexpected_result| expect(result).not_to include(*unexpected_result) unless unexpected_result.empty? }
         end
       end
     end
