@@ -21,10 +21,6 @@ gem "puma", "~> 6.3.1"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-
-  # se if we can skip this version lock in the future, related to this
-  # https://github.com/decidim/decidim/pull/12629
-  gem "bullet", "~> 7.0", "< 7.1.0"
   gem "decidim-dev", DECIDIM_VERSION
 end
 
@@ -33,8 +29,6 @@ group :development do
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
   gem "rubocop-faker", "~> 1.1"
-  gem "spring", "~> 2.0"
-  gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", "~> 4.2"
 end
 

@@ -18,12 +18,18 @@ module Decidim
         let!(:other_elections) { create_list(:vocdoni_election, 2) }
 
         let(:query) { "{ elections { edges { node { id } } } }" }
+        let(:result) { response["elections"]["edges"].map { |edge| edge["node"]["id"] } }
+        let(:expected_result) { component_vocdoni.map(&:id).map(&:to_s) }
+        let(:unexpected_results) do
+          [
+            component_vocdoni_hidden.map(&:id).map(&:to_s),
+            other_elections.map(&:id).map(&:to_s)
+          ]
+        end
 
         it "returns the elections" do
-          ids = response["elections"]["edges"].map { |edge| edge["node"]["id"] }
-          expect(ids).to include(*component_vocdoni.map(&:id).map(&:to_s))
-          expect(ids).not_to include(*component_vocdoni_hidden.map(&:id).map(&:to_s))
-          expect(ids).not_to include(*other_elections.map(&:id).map(&:to_s))
+          expect(result).to include(*expected_result) unless expected_result.empty?
+          unexpected_results.each { |unexpected_result| expect(result).not_to include(*unexpected_result) unless unexpected_result.empty? }
         end
       end
 

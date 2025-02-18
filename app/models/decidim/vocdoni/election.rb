@@ -12,7 +12,7 @@ module Decidim::Vocdoni
     include Decidim::Traceable
     include VocdoniApiUtils
 
-    enum status: [:created, :vote, :paused, :vote_ended, :results_published, :canceled].index_with(&:to_s)
+    enum :status, [:created, :vote, :paused, :vote_ended, :results_published, :canceled].index_with(&:to_s)
 
     component_manifest_name "vocdoni"
 

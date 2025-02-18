@@ -8,9 +8,10 @@ on:
 
 env:
   CI: "true"
-  RUBY_VERSION: 3.1.1
+  RUBY_VERSION: 3.2.2
   NODE_VERSION: 18.17.1
   CODECOV_TOKEN: 3dc89116-a8ed-4df4-bf06-812fc0d8854d
+  DISABLE_SPRING: 1
 
 jobs:
   test-report:
@@ -52,6 +53,9 @@ jobs:
         with:
           chrome-version: 119.0.6045.105
 
+      - name: Install other dependencies
+        run: sudo apt install imagemagick
+
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -85,14 +89,14 @@ jobs:
         with:
           token: ${{ env.CODECOV_TOKEN }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: screenshots
           path: ./spec/decidim_dummy_app/tmp/screenshots
           if-no-files-found: ignore
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Test logs

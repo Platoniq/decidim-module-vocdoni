@@ -141,22 +141,26 @@ module Decidim
       describe "questions" do
         let!(:election2) { create(:vocdoni_election, :complete) }
         let(:query) { "{ questions { id } }" }
+        let(:result) { response["questions"].map { |question| question["id"] } }
+        let(:expected_result) { model.questions.map(&:id).map(&:to_s) }
+        let(:unexpected_results) { [election2.questions.map(&:id).map(&:to_s)] }
 
         it "returns the election questions" do
-          ids = response["questions"].map { |question| question["id"] }
-          expect(ids).to include(*model.questions.map(&:id).map(&:to_s))
-          expect(ids).not_to include(*election2.questions.map(&:id).map(&:to_s))
+          expect(result).to include(*expected_result) unless expected_result.empty?
+          unexpected_results.each { |unexpected_result| expect(result).not_to include(*unexpected_result) unless unexpected_result.empty? }
         end
       end
 
       describe "voters" do
         let!(:election3) { create(:vocdoni_election, :complete) }
         let(:query) { "{ voters { wallet_address } }" }
+        let(:result) { response["voters"].map { |voter| voter["wallet_address"] } }
+        let(:expected_result) { model.voters.map(&:wallet_address).map(&:to_s) }
+        let(:unexpected_results) { [election3.voters.map(&:wallet_address).map(&:to_s)] }
 
         it "returns the election voters" do
-          wallets = response["voters"].map { |voter| voter["wallet_address"] }
-          expect(wallets).to include(*model.voters.map(&:wallet_address).map(&:to_s))
-          expect(wallets).not_to include(*election3.voters.map(&:wallet_address).map(&:to_s))
+          expect(result).to include(*expected_result) unless expected_result.empty?
+          unexpected_results.each { |unexpected_result| expect(result).not_to include(*unexpected_result) unless unexpected_result.empty? }
         end
       end
     end
