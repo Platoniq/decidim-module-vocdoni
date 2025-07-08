@@ -17,7 +17,7 @@ gem "decidim-vocdoni", path: "."
 
 gem "bootsnap", "~> 1.7"
 gem "faker", "~> 3.2"
-gem "puma", "~> 6.3.1"
+gem "puma"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri

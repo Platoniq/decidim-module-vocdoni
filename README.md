@@ -77,6 +77,7 @@ Depending on your Decidim version, you can choose the corresponding version to e
 | 1.x     | 0.27.x                      |
 | 2.x     | 0.28.x                      |
 | 3.x     | 0.29.x                      |
+| 4.x     | 0.30.x                      |
 
 
 ## Cron based tasks
