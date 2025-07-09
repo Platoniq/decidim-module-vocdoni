@@ -8,14 +8,14 @@ module Decidim
       graphql_name "VocdoniElections"
       description "An elections component of a participatory space."
 
-      field :elections, Decidim::Vocdoni::VocdoniElectionType.connection_type, null: true, connection: true
+      field :elections, Decidim::Vocdoni::VocdoniElectionType.connection_type, null: true, connection: true # rubocop:disable GraphQL/FieldDescription
+
+      field :election, Decidim::Vocdoni::VocdoniElectionType, null: true do # rubocop:disable GraphQL/FieldDescription
+        argument :id, GraphQL::Types::ID, required: true # rubocop:disable GraphQL/ArgumentDescription
+      end
 
       def elections
         VocdoniElectionsTypeHelper.base_scope(object).includes(:component)
-      end
-
-      field :election, Decidim::Vocdoni::VocdoniElectionType, null: true do
-        argument :id, GraphQL::Types::ID, required: true
       end
 
       def election(**args)

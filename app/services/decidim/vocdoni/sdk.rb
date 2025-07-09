@@ -16,7 +16,7 @@ module Decidim
       class Executor < NodeRunner::Executor
         # Set the env DECIDIM_VOCDONI_SDK_DEBUG=1 to debug all http calls into development_app/node_debug.log
         def exec(filename)
-          return super(filename) unless ENV.fetch("DECIDIM_VOCDONI_SDK_DEBUG", false)
+          return super unless ENV.fetch("DECIDIM_VOCDONI_SDK_DEBUG", false)
 
           ENV["NODE_PATH"] = @modules_path
           ENV["NODE_DEBUG"] = "http:*,http2:*"
