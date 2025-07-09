@@ -21,7 +21,7 @@ module Decidim
       def filter_sections
         @filter_sections ||= [{ method: :with_any_date,
                                 collection: date_filter_values,
-                                label_scope: "decidim.vocdoni.elections.elections.filters",
+                                label: "decidim.vocdoni.elections.elections.filters",
                                 id: "date" }]
       end
 
