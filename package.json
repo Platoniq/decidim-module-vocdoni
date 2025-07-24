@@ -7,6 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
+    "shakapacker-dev-server": "./bin/shakapacker-dev-server",
     "test": "ENV=dev WALLET=random node node-wrapper/test_census.mjs",
     "lint": "eslint -c .eslintrc.json --ext .js --ext .mjs app/packs/ node-wrapper/",
     "lint-fix": "eslint -c .eslintrc.json --ext .js --ext .mjs app/packs/ node-wrapper/ --fix",
