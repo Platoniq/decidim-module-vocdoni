@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 3.2.2
+  RUBY_VERSION: 3.3.4
   NODE_VERSION: 18.17.1
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         id: npm-cache-dir-path
         run: echo "::set-output name=dir::$(npm get cache)-vocdoni"
 
-      - uses: actions/cache@v2.0.0
+      - uses: actions/cache@v4
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir-path.outputs.dir }}

@@ -53,7 +53,7 @@ module Decidim
       end
 
       def key_participatory_space_slug
-        "#{current_participatory_space.underscored_name}_slug".to_sym
+        :"#{current_participatory_space.underscored_name}_slug"
       end
 
       def link_attributes_for_voting(election, voter_verified, modal_id)

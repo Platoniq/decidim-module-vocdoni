@@ -7,6 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
+    "shakapacker-dev-server": "./bin/shakapacker-dev-server",
     "test": "ENV=dev WALLET=random node node-wrapper/test_census.mjs",
     "lint": "eslint -c .eslintrc.json --ext .js --ext .mjs app/packs/ node-wrapper/",
     "lint-fix": "eslint -c .eslintrc.json --ext .js --ext .mjs app/packs/ node-wrapper/ --fix",
@@ -27,10 +28,10 @@
     "extends": "@decidim/stylelint-config"
   },
   "devDependencies": {
-    "@decidim/dev": "0.29.1",
-    "@decidim/eslint-config": "0.29.1",
-    "@decidim/prettier-config": "0.29.1",
-    "@decidim/stylelint-config": "0.29.1",
+    "@decidim/dev": "0.30.0",
+    "@decidim/eslint-config": "0.30.0",
+    "@decidim/prettier-config": "0.30.0",
+    "@decidim/stylelint-config": "0.30.0",
     "postcss-scss": "^4.0.9",
     "sass-embedded": "^1.83.1",
     "snarkjs": "vocdoni/snarkjs#f/browser",

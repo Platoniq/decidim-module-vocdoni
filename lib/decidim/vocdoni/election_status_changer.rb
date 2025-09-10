@@ -13,15 +13,15 @@ module Decidim
       def update_ongoing_elections!
         elections = Decidim::Vocdoni::Election
                     .where(status: "created")
-                    .where("start_time <= ?", Time.zone.now)
-                    .where("end_time >= ?", Time.zone.now)
+                    .where(start_time: ..Time.zone.now)
+                    .where(end_time: Time.zone.now..)
         update_elections_status(elections, "vote")
       end
 
       def update_finished_elections!
         elections = Decidim::Vocdoni::Election
                     .where(status: %w(created vote))
-                    .where("end_time <= ?", Time.zone.now)
+                    .where(end_time: ..Time.zone.now)
         update_elections_status(elections, "vote_ended")
       end
 

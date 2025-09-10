@@ -8,7 +8,7 @@ on:
 
 env:
   CI: "true"
-  NODE_VERSION: 16.9.1
+  NODE_VERSION: 18.17.1
 
 jobs:
   test-report:
@@ -28,7 +28,7 @@ jobs:
         id: npm-cache-dir-path
         run: echo "::set-output name=dir::$(npm get cache)-vocdoni"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir-path.outputs.dir }}

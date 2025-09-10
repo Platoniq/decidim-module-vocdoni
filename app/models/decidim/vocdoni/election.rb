@@ -20,8 +20,8 @@ module Decidim::Vocdoni
     has_many :voters, foreign_key: "decidim_vocdoni_election_id", class_name: "Decidim::Vocdoni::Voter", inverse_of: :election, dependent: :destroy
 
     scope :active, lambda {
-      where("start_time <= ?", Time.current)
-        .where("end_time >= ?", Time.current)
+      where(start_time: ..Time.current)
+        .where(end_time: Time.current..)
     }
 
     scope :upcoming, lambda {
@@ -30,8 +30,8 @@ module Decidim::Vocdoni
     }
 
     scope :finished, lambda {
-      where("start_time < ?", Time.current)
-        .where("end_time < ?", Time.current)
+      where(start_time: ...Time.current)
+        .where(end_time: ...Time.current)
     }
 
     scope_search_multi :with_any_date, [:active, :upcoming, :finished]

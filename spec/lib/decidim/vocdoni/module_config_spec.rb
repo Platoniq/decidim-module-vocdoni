@@ -54,7 +54,7 @@ module Decidim
         expect(Decidim::Vocdoni::API_ENDPOINTS["prod"]).to eq("https://api.vocdoni.io/v2")
       end
 
-      context "when enpoint is wrong" do
+      context "when endpoint is wrong" do
         let(:vocdoni_env) { "WRONG" }
 
         it "defaults to dev" do
